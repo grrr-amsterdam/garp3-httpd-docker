@@ -5,12 +5,14 @@ MAINTAINER David Spreekmeester <david@grrr.nl>
 
 ENV APPLICATION_ENV=development
 
-RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+#RUN \
+#	rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm;\
+#	rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 #RUN yum -y install yum-plugin-replace
 #RUN yum -y replace php-common --replace-with=php56w-common
 
-WORKDIR /usr/local/src
+WORKDIR /var/www/html
 COPY src/* /var/www/html/
 CMD [ "php", "test.php" ]
 #CMD [ "php", "./src/test.php" ]

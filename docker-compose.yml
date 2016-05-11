@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/code
+  db:
+    image: orchardup/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: wordpress

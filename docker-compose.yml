@@ -9,6 +9,8 @@ services:
       - db
     volumes:
       - .:/code
+      - ../Sites/entree:/Users/david/Sites/entree
+    privileged: true
   db:
     image: orchardup/mysql
     ports:

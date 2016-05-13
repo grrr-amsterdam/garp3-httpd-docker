@@ -4,13 +4,13 @@ services:
     build: .
     ports:
       - "80:80"
-      - "8000:8000"
     depends_on:
       - db
     volumes:
-      - .:/code
-      - ../Sites/entree:/Users/david/Sites/entree
+      - ../Sites/entree:/var/www/html
     privileged: true
+    #tty: true
+    #command: "/bin/sh"
   db:
     image: orchardup/mysql
     ports:

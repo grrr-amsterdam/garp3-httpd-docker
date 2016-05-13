@@ -9,7 +9,7 @@ ADD docker/httpd.conf /etc/apache2/apache2.conf
 #/etc/apache2/apache2.conf
 #RUN cat /usr/local/apache2/conf/httpd.conf >> /etc/apache2/apache2.conf
 # Even een test met een lokale package.json, die moet eigenlijk uit Entree komen.
-#ADD package.json /var/www/html/entree
+ADD package.json /var/www/html
 
 WORKDIR /var/www/html
 #WORKDIR /var/www/html/entree
@@ -36,11 +36,11 @@ RUN \
 	#chgrp -R www-data /var/www/html
 	#chgrp -R www-data .
 
-#RUN \
+RUN \
 	# Run frontend dev tools
 	#cd /var/www/html && \
 	#ls . && \
-	#npm install
+	npm install
 	#gulp
 
 #RUN apachectl graceful

@@ -6,57 +6,49 @@ ENV APPLICATION_ENV=development
 #ADD src /code
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
-#/etc/apache2/apache2.conf
-#RUN cat /usr/local/apache2/conf/httpd.conf >> /etc/apache2/apache2.conf
 # Even een test met een lokale package.json, die moet eigenlijk uit Entree komen.
 ADD package.json /var/www/html
+ADD gulpfile.js /var/www/html
 
 WORKDIR /var/www/html
-#WORKDIR /var/www/html/entree
-
-#RUN \
-	# Link the host www directory into the Docker container
-	#rm -rf /var/www/html && \
-	#cd /var/www && \
-	#ln -s /Users/david/Sites/entree html
 
 RUN \
 	# Update first
 	apt-get -y update && \
+
+	# Basics
+	apt-get -y install apt-utils wget && \
 
 	# Install MySql Improved
 	apt-get -y install php5-mysql && \
 	docker-php-ext-configure mysqli --with-mysqli && \
 	docker-php-ext-install mysqli && \
 
-	# Install Node & NPM
-	apt-get -y install nodejs npm && \
-	a2enmod rewrite
-	#chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share} && \
-	#chgrp -R www-data /var/www/html
-	#chgrp -R www-data .
+	# Install Node 4.x & NPM
+	wget -qO- https://deb.nodesource.com/setup_4.x | bash - && \
+	apt-get -y install nodejs && \
 
-RUN \
-	# Run frontend dev tools
-	#cd /var/www/html && \
-	#ls . && \
-	npm install
-	#gulp
+	# Install mod_rewrite on Apache
+	a2enmod rewrite && \
 
-#RUN apachectl graceful
+	# Install ruby gems
+	apt-get -y install ruby rubygems-integration && \
+	gem install scss-lint && \
+	gem install semver && \
+
+	npm i -g gulp && \
+	npm i -g bower && \
+	npm i -g jshint && \
+
+	npm i && \
+	gulp
+
 
 EXPOSE 80
 EXPOSE 3306 
 
 
-#npm install -g n
-#npm install -g gulp
-#npm install -g bower
-#npm install -g jshint
 
-# Install ruby gems
-#sudo gem install scss-lint
-#sudo gem install semver
 #sudo gem install capistrano
 
 # Install python package manager
@@ -65,4 +57,3 @@ EXPOSE 3306
 
 # Install aws cli tool
 #sudo pip install awscli
-

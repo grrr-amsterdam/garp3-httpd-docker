@@ -2,13 +2,9 @@ FROM php:5.6-apache
 MAINTAINER David Spreekmeester <david@grrr.nl>
 
 ENV APPLICATION_ENV=development
-#COPY src/* /var/www/html/
-#ADD src /code
+RUN mkdir -p /var/www/html/public
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
-# Even een test met een lokale package.json, die moet eigenlijk uit Entree komen.
-ADD package.json /var/www/html
-ADD gulpfile.js /var/www/html
 
 WORKDIR /var/www/html
 
@@ -21,8 +17,7 @@ RUN \
 
 	# Install MySql Improved
 	apt-get -y install php5-mysql && \
-	docker-php-ext-configure mysqli --with-mysqli && \
-	docker-php-ext-install mysqli && \
+	docker-php-ext-install pdo_mysql && \
 
 	# Install Node 4.x & NPM
 	wget -qO- https://deb.nodesource.com/setup_4.x | bash - && \
@@ -38,11 +33,7 @@ RUN \
 
 	npm i -g gulp && \
 	npm i -g bower && \
-	npm i -g jshint && \
-
-	npm i && \
-	gulp
-
+	npm i -g jshint
 
 EXPOSE 80
 EXPOSE 3306 

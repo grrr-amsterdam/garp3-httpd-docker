@@ -36,8 +36,6 @@ RUN \
 	npm i -g jshint
 
 EXPOSE 80
-EXPOSE 3306 
-
 
 
 #sudo gem install capistrano

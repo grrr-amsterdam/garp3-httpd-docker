@@ -22,8 +22,8 @@ RUN \
 	apt-get -y install php5-mysql && \
 	docker-php-ext-install pdo_mysql && \
 
-	# Install Node 4.x & NPM
-	wget -qO- https://deb.nodesource.com/setup_4.x | bash - && \
+	# Install Node 6.x & NPM
+	wget -qO- https://deb.nodesource.com/setup_6.x | bash - && \
 	apt-get -y install nodejs && \
 
 	# Install mod_rewrite on Apache

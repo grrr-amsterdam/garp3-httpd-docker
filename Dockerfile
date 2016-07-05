@@ -15,6 +15,9 @@ RUN \
 	# Basics
 	apt-get -y install apt-utils wget && \
 
+    # Enable Apache's mod_include for Server Side Includes
+    cp /etc/apache2/mods-available/include.load /etc/apache2/mods-enabled/ && \
+
 	# Install MySql Improved
 	apt-get -y install php5-mysql && \
 	docker-php-ext-install pdo_mysql && \

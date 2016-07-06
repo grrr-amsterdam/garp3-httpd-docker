@@ -5,10 +5,14 @@ ENV APPLICATION_ENV=development
 RUN mkdir -p /var/www/html/public
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
+ADD docker/garp.bashrc /etc/
 
 WORKDIR /var/www/html
 
 RUN \
+    # Initialize global shell script
+    echo "source /etc/garp.bashrc" >> /etc/bash.bashrc && \
+
 	# Update first
 	apt-get -y update && \
 
@@ -36,8 +40,7 @@ RUN \
 
 	npm i -g gulp && \
 	npm i -g bower && \
-	npm i -g jshint && \
-	alias g='/vendor/grrr-amsterdam/garp3/scripts/garp.php'
+	npm i -g jshint 
 
 EXPOSE 80
 

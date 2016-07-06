@@ -36,7 +36,8 @@ RUN \
 
 	npm i -g gulp && \
 	npm i -g bower && \
-	npm i -g jshint
+	npm i -g jshint \
+	alias g='/vendor/grrr-amsterdam/garp3/scripts/garp.php'
 
 EXPOSE 80
 

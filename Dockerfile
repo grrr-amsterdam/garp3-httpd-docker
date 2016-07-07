@@ -12,6 +12,7 @@ WORKDIR /var/www/html
 RUN \
     # Initialize global shell script
     echo "source /etc/garp.bashrc" >> /etc/bash.bashrc && \
+    . /etc/garp.bashrc && \
 
 	# Update first
 	apt-get -y update && \

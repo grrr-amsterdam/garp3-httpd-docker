@@ -6,10 +6,15 @@ RUN mkdir -p /var/www/html/public
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
 ADD docker/garp.bashrc /etc/
+ADD g /bin/
 
 WORKDIR /var/www/html
 
 RUN \
+    # Make sure we can call the 'g' alias to the Garp CLI entrypoint,
+    # even from outside the container.
+    chmod +x /bin/g && \
+
     # Initialize global shell script
     echo "source /etc/garp.bashrc" >> /etc/bash.bashrc && \
     . /etc/garp.bashrc && \

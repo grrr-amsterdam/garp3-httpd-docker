@@ -17,12 +17,15 @@ RUN \
     # even from outside the container.
     chmod +x /bin/g && \
 
-    # Initialize global shell script
-    echo "source /etc/garp.bashrc" >> /etc/bash.bashrc && \
-    . /etc/garp.bashrc && \
-
 	# Update first
 	apt-get -y update && \
+
+    # Install Fish shell for Debian 7.x
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-key D880C8E4 && \
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/2/Debian_7.0/ ./' \
+        > /etc/apt/sources.list.d/fish-shell.list && \
+    apt-get -y update && \
+    apt-get -y install fish && \
 
 	# Basics
 	apt-get -y install apt-utils wget && \

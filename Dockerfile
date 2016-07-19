@@ -4,7 +4,6 @@ MAINTAINER David Spreekmeester <david@grrr.nl>
 ENV APPLICATION_ENV=development
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
-ADD docker/garp.bashrc /etc/
 ADD g /bin/
 
 WORKDIR /var/www/html

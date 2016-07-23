@@ -40,6 +40,9 @@ RUN \
 	apt-get -y install php5-mysql && \
 	docker-php-ext-install pdo_mysql && \
 
+    # Install general MySQL client for easy access to db container
+    apt-get -y install mysql-client && \
+
 	# Install Node 6.x & NPM
 	wget -qO- https://deb.nodesource.com/setup_6.x | bash - && \
 	apt-get -y install nodejs && \

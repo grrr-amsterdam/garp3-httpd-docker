@@ -14,7 +14,7 @@ Example of a `docker-compose.yml` file in your project:
 version: '2'
 services:
   web:
-    image: grrrnl/garp3
+    image: grrrnl/garp3-httpd
     ports:
       - "80:80"
     depends_on:
@@ -23,9 +23,19 @@ services:
       - .:/var/www/html
     privileged: true
   db:
-    image: orchardup/mysql
+    image: grrrnl/garp3-db
     ports:
       - "3306:3306"
+    restart: always
+    volumes_from:
+      - dbdata
     environment:
+      MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: my_database
+      MYSQL_USER: my_db_user
+      MYSQL_PASSWORD: my_db_pass
+  dbdata:
+    image: grrrnl/garp3-data
+    volumes:
+      - ./application/data/docker:/var/lib/mysql
 ```

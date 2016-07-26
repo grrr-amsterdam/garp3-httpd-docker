@@ -34,6 +34,9 @@ RUN \
     # Basics
     apt-get -y install apt-utils wget && \
 
+    # PHP GD library
+    apt-get -y install php5-gd && \
+
     # Enable Apache's mod_include for Server Side Includes
     cp /etc/apache2/mods-available/include.load /etc/apache2/mods-enabled/ && \
 

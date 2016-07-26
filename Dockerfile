@@ -5,10 +5,12 @@ ENV APPLICATION_ENV=development
 
 # Export $TERM explicitly to prevent some problems with Fish shell
 ENV TERM dumb
+# Add PHP Composer path to current path
+#ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:./vendor/bin
+ENV PATH $PATH:./vendor/bin
 
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
-ADD docker/environment.sh /etc/profile.d/
 ADD g /bin/
 
 WORKDIR /var/www/html
@@ -16,9 +18,6 @@ WORKDIR /var/www/html
 RUN \
     # Create document root directory.
     mkdir -p /var/www/html/public && \
-
-    # Append loading our environment settings to bash.bashrc
-    echo "\n. /etc/profile.d/environment.sh" >> /etc/bash.bashrc && \
 
     # Make sure we can call the 'g' alias to the Garp CLI entrypoint,
     # even from outside the container.

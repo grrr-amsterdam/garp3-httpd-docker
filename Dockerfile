@@ -8,6 +8,7 @@ ENV TERM dumb
 
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
+ADD docker/environment.sh /etc/profile.d/
 ADD g /bin/
 
 WORKDIR /var/www/html

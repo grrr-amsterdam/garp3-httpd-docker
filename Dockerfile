@@ -17,6 +17,9 @@ RUN \
     # Create document root directory.
     mkdir -p /var/www/html/public && \
 
+    # Append loading our environment settings to bash.bashrc
+    echo "\n. /etc/profile.d/environment.sh" >> /etc/bash.bashrc && \
+
     # Make sure we can call the 'g' alias to the Garp CLI entrypoint,
     # even from outside the container.
     chmod +x /bin/g && \

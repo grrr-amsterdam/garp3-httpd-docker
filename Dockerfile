@@ -20,8 +20,8 @@ RUN \
     # even from outside the container.
     chmod +x /bin/g && \
 
-	# Update first
-	apt-get -y update && \
+    # Update first
+    apt-get -y update && \
 
     # Install Fish shell for Debian 7.x
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key D880C8E4 && \
@@ -30,34 +30,34 @@ RUN \
     apt-get -y update && \
     apt-get -y install fish && \
 
-	# Basics
-	apt-get -y install apt-utils wget && \
+    # Basics
+    apt-get -y install apt-utils wget && \
 
     # Enable Apache's mod_include for Server Side Includes
     cp /etc/apache2/mods-available/include.load /etc/apache2/mods-enabled/ && \
 
-	# Install MySql Improved
-	apt-get -y install php5-mysql && \
-	docker-php-ext-install pdo_mysql && \
+    # Install MySql Improved
+    apt-get -y install php5-mysql && \
+    docker-php-ext-install pdo_mysql && \
 
     # Install general MySQL client for easy access to db container
     apt-get -y install mysql-client && \
 
-	# Install Node 6.x & NPM
-	wget -qO- https://deb.nodesource.com/setup_6.x | bash - && \
-	apt-get -y install nodejs && \
+    # Install Node 6.x & NPM
+    wget -qO- https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get -y install nodejs && \
 
-	# Install mod_rewrite on Apache
-	a2enmod rewrite && \
+    # Install mod_rewrite on Apache
+    a2enmod rewrite && \
 
-	# Install ruby gems
-	apt-get -y install ruby rubygems-integration && \
-	gem install scss-lint && \
-	gem install semver && \
+    # Install ruby gems
+    apt-get -y install ruby rubygems-integration && \
+    gem install scss-lint && \
+    gem install semver && \
 
-	npm i -g gulp && \
-	npm i -g bower && \
-	npm i -g jshint 
+    npm i -g gulp && \
+    npm i -g bower && \
+    npm i -g jshint 
 
 EXPOSE 80
 

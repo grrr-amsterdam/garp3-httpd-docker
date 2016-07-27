@@ -67,13 +67,14 @@ RUN \
 
     npm i -g gulp && \
     npm i -g bower && \
-    npm i -g jshint 
+    npm i -g jshint && \
+
+    # Deploy tools
+    gem install capistrano
 
 EXPOSE 80
 
 # ----------- SOMEDAY
-#sudo gem install capistrano
-
 # Install python package manager
 #wget https://bootstrap.pypa.io/get-pip.py
 #sudo python get-pip.py

@@ -70,14 +70,11 @@ RUN \
     npm i -g jshint && \
 
     # Deploy tools
-    gem install capistrano
+    gem install capistrano && \
 
+    # Install python package manager
+    apt-get -y install python python-pip && \
+
+    # Install aws cli tool
+    pip install awscli
 EXPOSE 80
-
-# ----------- SOMEDAY
-# Install python package manager
-#wget https://bootstrap.pypa.io/get-pip.py
-#sudo python get-pip.py
-
-# Install aws cli tool
-#sudo pip install awscli

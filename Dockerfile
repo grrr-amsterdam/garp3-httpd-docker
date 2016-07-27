@@ -6,7 +6,6 @@ ENV APPLICATION_ENV=development
 # Export $TERM explicitly to prevent some problems with Fish shell
 ENV TERM dumb
 # Add PHP Composer path to current path
-#ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:./vendor/bin
 ENV PATH $PATH:./vendor/bin
 
 ADD docker/php.ini /usr/local/etc/php/

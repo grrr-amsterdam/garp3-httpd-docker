@@ -4,23 +4,18 @@ MAINTAINER David Spreekmeester <david@grrr.nl>
 ENV APPLICATION_ENV=development
 
 # Export $TERM explicitly to prevent some problems with Fish shell
-ENV TERM dumb
+ENV TERM linux
 # Add PHP Composer path to current path
 ENV PATH $PATH:./vendor/bin
 
 ADD docker/php.ini /usr/local/etc/php/
 ADD docker/httpd.conf /etc/apache2/apache2.conf
-ADD g /bin/
 
 WORKDIR /var/www/html
 
 RUN \
     # Create document root directory.
     mkdir -p /var/www/html/public && \
-
-    # Make sure we can call the 'g' alias to the Garp CLI entrypoint,
-    # even from outside the container.
-    chmod +x /bin/g && \
 
     # Update first
     apt-get -y update && \

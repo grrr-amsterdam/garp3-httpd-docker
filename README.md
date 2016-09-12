@@ -1,4 +1,6 @@
 # Garp 3 webserver Docker setup
+[![](https://images.microbadger.com/badges/version/grrrnl/garp3-httpd.svg)](http://microbadger.com/images/grrrnl/garp3-httpd)
+
 This is a webserver setup for Docker, to enable running a Garp 3 site out of the box.
 For instance, on your local development machine.
 

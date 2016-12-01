@@ -38,6 +38,11 @@ RUN \
     docker-php-ext-configure gd --with-jpeg-dir=/usr/lib && \
     docker-php-ext-install gd && \
 
+    # LibSSH2
+    apt-get install -y libssh2-1 libssh2-1-dev && \
+    yes | pecl install ssh2 && \
+    docker-php-ext-enable ssh2 && \
+
     # Enable Apache's mod_include for Server Side Includes
     cp /etc/apache2/mods-available/include.load /etc/apache2/mods-enabled/ && \
 

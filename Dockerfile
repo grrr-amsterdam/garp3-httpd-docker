@@ -20,15 +20,15 @@ RUN \
     # Update first
     apt -y update && \
 
-    # Install Fish shell for Debian 7.x
+    # Install Fish shell for Debian 8.x
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key D880C8E4 && \
-    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/2/Debian_7.0/ ./' \
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/2/Debian_8.0/ ./' \
         > /etc/apt/sources.list.d/fish-shell.list && \
     apt -y update && \
     apt -y install fish && \
 
     # Basics
-    apt -y install apt-utils wget git && \
+    apt -y install apt-utils wget git vim && \
 
     # PHP GD library
     apt -y install \

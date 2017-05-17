@@ -8,10 +8,12 @@ For instance, on your local development machine.
 Garp 3 is a PHP based platform, originating from Grrr in Amsterdam.
 
 You can use it with Docker Compose, or standalone.
-The Docker Compose route is practical when also running a database setup.
+The Docker Compose route is practical when you're running a database setup.
+Or anything with multiple services or instances.
+
 Next to the runtime, it also provides tools and dependencies for building and deployment.
 
-Repository on Docker Hub: [https://hub.docker.com/r/grrrnl/garp3-httpd/](`grrrnl/garp3`)
+Repository on Docker Hub: [`grrrnl/garp3`](https://hub.docker.com/r/grrrnl/garp3-httpd/)
 
 Example of a `docker-compose.yml` file in your project:
 ```

@@ -5,7 +5,7 @@
 This is a webserver setup for Docker, to enable running a Garp 3 site out of the box.
 For instance, on your local development machine.
 
-Garp 3 is a PHP based platform, originating from Grrr in Amsterdam.
+Garp 3 is a PHP based platform, originating from [Grrr](@grrr-amsterdam), based in Amsterdam.
 
 You can use it with Docker Compose, or standalone.
 The Docker Compose route is practical when you're running a database setup.

@@ -11,9 +11,9 @@ You can use it with Docker Compose, or standalone.
 The Docker Compose route is practical when you're running a database setup.
 Or anything with multiple services or instances.
 
-Next to the runtime, it also provides tools and dependencies for building and deployment.
+Next to the runtime, the [development image](https://hub.docker.com/r/grrrnl/garp3-httpd-dev) also provides tools and dependencies for building and deployment.
 
-Repository on Docker Hub: [`grrrnl/garp3`](https://hub.docker.com/r/grrrnl/garp3-httpd/)
+Repository on Docker Hub: [`grrrnl/garp3-httpd`](https://hub.docker.com/r/grrrnl/garp3-httpd/)
 
 Example of a `docker-compose.yml` file in your project:
 ```

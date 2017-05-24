@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php
+array_shift($argv);
+$arg_string = implode(' ', array_map('escapeshellarg', $argv));
+$arg_string .= preg_match('/--(no-)?ansi/', $arg_string) ? '' : ' --ansi';
+passthru("/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /home/scripts/composer.phar $arg_string", $return_var);
+exit($return_var);

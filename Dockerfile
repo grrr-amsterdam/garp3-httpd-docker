@@ -6,10 +6,12 @@ ENV APPLICATION_ENV=development
 # Export $TERM explicitly to prevent some problems with Fish shell
 ENV TERM linux
 # Add PHP Composer path to current path
-ENV PATH $PATH:./vendor/bin
+ENV PATH $PATH:./vendor/bin:/home/scripts/
 
-ADD docker/php.ini /usr/local/etc/php/
-ADD docker/httpd.conf /etc/apache2/apache2.conf
+ADD docker/config/php.ini /usr/local/etc/php/
+ADD docker/config/httpd.conf /etc/apache2/apache2.conf
+ADD docker/scripts/install-composer.sh /home/
+ADD docker/scripts/composer-executable /usr/local/bin/composer
 
 WORKDIR /var/www/html
 
@@ -21,7 +23,7 @@ RUN \
     apt -y update && \
 
     # Basics
-    apt -y install apt-utils && \
+    apt -y install apt-utils wget && \
 
     # PHP GD library
     apt -y install \
@@ -36,5 +38,12 @@ RUN \
     docker-php-ext-install pdo_mysql && \
 
     # Install mod_rewrite on Apache
-    a2enmod rewrite
+    a2enmod rewrite && \
+
+    # Install PHP Composer
+    mkdir /home/scripts && \
+    cd /home/scripts && \
+    sh /home/install-composer.sh && \
+    chmod u+x /usr/local/bin/composer && \
+    cd -
 EXPOSE 80

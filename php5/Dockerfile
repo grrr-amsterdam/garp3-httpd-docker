@@ -2,16 +2,15 @@ FROM php:5.6-apache
 MAINTAINER David Spreekmeester <david@grrr.nl>
 
 ENV APPLICATION_ENV=development
-
-# Export $TERM explicitly to prevent some problems with Fish shell
 ENV TERM linux
+
 # Add PHP Composer path to current path
-ENV PATH $PATH:./vendor/bin:/home/scripts/
+ENV PATH $PATH:./vendor/bin
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 ADD config/php.ini /usr/local/etc/php/
 ADD config/httpd.conf /etc/apache2/apache2.conf
-ADD scripts/install-composer.sh /home/
-ADD scripts/composer-executable /usr/local/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
@@ -31,11 +30,6 @@ RUN \
     # Install MySql
     docker-php-ext-install pdo_mysql && \
     # Install mod_rewrite on Apache
-    a2enmod rewrite && \
-    # Install PHP Composer
-    mkdir /home/scripts && \
-    cd /home/scripts && \
-    sh /home/install-composer.sh && \
-    chmod u+x /usr/local/bin/composer && \
-    cd -
+    a2enmod rewrite
+
 EXPOSE 80

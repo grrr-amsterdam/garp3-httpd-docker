@@ -9,38 +9,30 @@ ENV TERM linux
 ENV PATH $PATH:./vendor/bin:/home/scripts/
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-ADD docker/config/php.ini /usr/local/etc/php/
-ADD docker/config/httpd.conf /etc/apache2/apache2.conf
-ADD docker/scripts/install-composer.sh /home/
-ADD docker/scripts/composer-executable /usr/local/bin/composer
+ADD config/php.ini /usr/local/etc/php/
+ADD config/httpd.conf /etc/apache2/apache2.conf
+ADD scripts/install-composer.sh /home/
+ADD scripts/composer-executable /usr/local/bin/composer
 
 WORKDIR /var/www/html
 
 RUN \
     # Create document root directory.
     mkdir -p /var/www/html/public && \
-
     # Update first
-    apt -y update && \
-
+    apt-get -y update && \
     # Basics
-    apt -y install apt-utils wget && \
-
+    apt-get -y install apt-utils wget && \
     # PHP GD library
-    apt -y install \
-        libpng12-dev \
-        libjpeg-dev \
-        php5-gd && \
+    apt-get -y install \
+        libpng-dev \
+        libjpeg-dev && \
     docker-php-ext-configure gd --with-jpeg-dir=/usr/lib && \
     docker-php-ext-install gd && \
-
-    # Install MySql Improved
-    apt -y install php5-mysql && \
+    # Install MySql
     docker-php-ext-install pdo_mysql && \
-
     # Install mod_rewrite on Apache
     a2enmod rewrite && \
-
     # Install PHP Composer
     mkdir /home/scripts && \
     cd /home/scripts && \

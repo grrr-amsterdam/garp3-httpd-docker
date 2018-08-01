@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:7.1-apache
 MAINTAINER David Spreekmeester <david@grrr.nl>
 
 ENV APPLICATION_ENV=development
@@ -20,7 +20,7 @@ RUN \
     # Update first
     apt-get -y update && \
     # Basics
-    apt-get -y install apt-utils wget && \
+    apt-get -y install apt-utils wget git && \
     # PHP GD library
     apt-get -y install \
         libpng-dev \

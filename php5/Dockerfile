@@ -20,7 +20,7 @@ RUN \
     # Update first
     apt-get -y update && \
     # Basics
-    apt-get -y install apt-utils wget && \
+    apt-get -y install apt-utils wget zip unzip && \
     # PHP GD library
     apt-get -y install \
         libpng-dev \
@@ -30,6 +30,8 @@ RUN \
     # Install MySql
     docker-php-ext-install pdo_mysql && \
     # Install mod_rewrite on Apache
-    a2enmod rewrite
+    a2enmod rewrite && \
+    # Install PHP zip
+    docker-php-ext-install zip
 
 EXPOSE 80
